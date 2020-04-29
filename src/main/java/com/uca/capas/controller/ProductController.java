@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.uca.capas.domain.Product;
@@ -30,6 +31,21 @@ public class ProductController {
 		mav.setViewName("productos");
 		mav.addObject("producto", products);
 		mav.addObject("product", new Product());
+		
+		return mav;
+	}
+	
+	@PostMapping("/validar")
+	public ModelAndView validar(Product producto) {
+		ModelAndView mav = new ModelAndView();
+		
+		if(products.get(producto.getId()).getCantidad() >= producto.getCantidad()) {
+			mav.setViewName("compra");
+		} else {
+			mav.setViewName("error");
+		}
+		
+		mav.addObject("nombre", products.get(producto.getId()).getNombre());
 		
 		return mav;
 	}
