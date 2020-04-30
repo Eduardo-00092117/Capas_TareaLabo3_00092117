@@ -21,12 +21,12 @@ public class ProductController {
 		
 		products.clear();
 		
-		products.add(new Product(0, "WWZ", 20));
-		products.add(new Product(1, "Paladins", 15));
-		products.add(new Product(2, "GRID 2", 5));
-		products.add(new Product(3, "Tomb Raider", 60));
-		products.add(new Product(4, "Dirt 3", 34));
-		products.add(new Product(5, "Left 4 Dead 2", 42));
+		products.add(new Product(0, "WWZ", "20"));
+		products.add(new Product(1, "Paladins", "15"));
+		products.add(new Product(2, "GRID 2", "5"));
+		products.add(new Product(3, "Tomb Raider", "60"));
+		products.add(new Product(4, "Dirt 3", "34"));
+		products.add(new Product(5, "Left 4 Dead 2", "42"));
 		
 		mav.setViewName("productos");
 		mav.addObject("producto", products);
@@ -39,8 +39,8 @@ public class ProductController {
 	public ModelAndView validar(Product producto) {
 		ModelAndView mav = new ModelAndView();
 		
-		if(products.get(producto.getId()).getCantidad() >= producto.getCantidad()) {
-			mav.setViewName("compra");
+		if(Integer.parseInt(products.get(producto.getId()).getCantidad()) >= Integer.parseInt(producto.getCantidad())) {
+			mav.setViewName("compra"); 
 		} else {
 			mav.setViewName("error");
 		}
